@@ -26,6 +26,8 @@ def test_check_reports_each_mismatch() -> None:
 
 def test_load_cases_reports_line_number(tmp_path: Path) -> None:
     path = tmp_path / "d.jsonl"
-    path.write_text('{"question": "ok", "intent": "question"}\n{"question": "x", "intent": "???"}\n')
+    path.write_text(
+        '{"question": "ok", "intent": "question"}\n{"question": "x", "intent": "???"}\n'
+    )
     with pytest.raises(ValueError, match=r"d.jsonl:2"):
         load_cases(path)

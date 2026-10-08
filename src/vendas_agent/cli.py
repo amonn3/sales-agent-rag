@@ -1,8 +1,8 @@
 """Command line interface: chat, ask, ingest, eval."""
 
 import argparse
-from collections.abc import Sequence
 import logging
+from collections.abc import Sequence
 from pathlib import Path
 
 from vendas_agent.agent import SalesAgent

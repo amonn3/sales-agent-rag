@@ -52,7 +52,9 @@ def test_pricing_is_grounded_by_plans_even_without_doc_hits(nodes: SalesNodes) -
     assert result["grounded"] is True  # product.toml has plans
 
 
-def test_system_prompt_contains_rules_plans_and_context(kb: KnowledgeBase, nodes: SalesNodes) -> None:
+def test_system_prompt_contains_rules_plans_and_context(
+    kb: KnowledgeBase, nodes: SalesNodes
+) -> None:
     hits = nodes.store.search(nodes.embedder.embed(["plano pro"])[0], 1)
     prompt = build_system_prompt(kb.product, Intent.PRICING, hits)
     assert "Nimbus CRM" in prompt
@@ -69,7 +71,9 @@ def test_prompt_handles_missing_context_and_plans(kb: KnowledgeBase) -> None:
     assert "<contexto>\n\n</contexto>" in prompt
 
 
-def test_greeting_does_not_call_llm(agent: SalesAgent, fake_llm: FakeLLM, kb: KnowledgeBase) -> None:
+def test_greeting_does_not_call_llm(
+    agent: SalesAgent, fake_llm: FakeLLM, kb: KnowledgeBase
+) -> None:
     reply = agent.ask("Oi, bom dia!")
     assert reply.intent is Intent.GREETING
     assert reply.text == kb.product.greeting

@@ -9,7 +9,7 @@ from vendas_agent.models import Document
     [(0, 0), (-5, 0), (100, 100), (100, 150), (100, -1)],
 )
 def test_invalid_parameters_raise(max_chars: int, overlap: int) -> None:
-    with pytest.raises(ValueError, match="max_chars|overlap"):
+    with pytest.raises(ValueError, match=r"max_chars|overlap"):
         chunk_document(Document("a.md", "texto"), max_chars=max_chars, overlap=overlap)
 
 

@@ -33,6 +33,7 @@ target-version = "py311"
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM", "C4", "RUF"]
 ignore = ["E501"]  # line length is handled by `ruff format`
+allowed-confusables = ["›"]  # citation separator, e.g. "planos.md › Preços"
 
 [tool.mypy]
 strict = true

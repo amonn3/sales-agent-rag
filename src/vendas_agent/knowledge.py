@@ -7,9 +7,9 @@ Layout (this is what makes the agent customizable per client)::
     └── docs/          # any number of .md / .txt files
 """
 
+import tomllib
 from collections.abc import Mapping
 from pathlib import Path
-import tomllib
 from typing import Any
 
 from vendas_agent.models import Document, KnowledgeBase, Plan, ProductConfig

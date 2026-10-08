@@ -1,8 +1,8 @@
 """LLM clients behind a Protocol, so the agent never depends on a vendor."""
 
-from collections.abc import Sequence
 import logging
 import re
+from collections.abc import Sequence
 from typing import Any, Protocol
 
 from vendas_agent.models import Message

@@ -1,9 +1,9 @@
 """Wire the same nodes into a LangGraph (``pip install .[graph]``).
 
-    START → classify ─┬─ greet ───────────────┐
-                      ├─ escalate ────────────┤
-                      └─ retrieve ─┬─ respond ─┤→ END
-                                   └─ fallback ┘
+START → classify ─┬─ greet ───────────────┐
+                  ├─ escalate ────────────┤
+                  └─ retrieve ─┬─ respond ─┤→ END
+                               └─ fallback ┘
 """
 
 from typing import cast

@@ -1,8 +1,8 @@
 """Runtime settings, read from environment variables (never hard-coded secrets)."""
 
+import os
 from collections.abc import Mapping
 from dataclasses import dataclass
-import os
 from typing import Literal, cast
 
 EmbedderName = Literal["hashing", "openai"]
@@ -46,9 +46,7 @@ class Settings:
         return cls(
             anthropic_model=e.get("ANTHROPIC_MODEL", defaults.anthropic_model),
             embedder=cast(EmbedderName, embedder),
-            openai_embedding_model=e.get(
-                "OPENAI_EMBEDDING_MODEL", defaults.openai_embedding_model
-            ),
+            openai_embedding_model=e.get("OPENAI_EMBEDDING_MODEL", defaults.openai_embedding_model),
             store=cast(StoreName, store),
             database_url=e.get("DATABASE_URL", defaults.database_url),
             top_k=int(e.get("TOP_K", defaults.top_k)),

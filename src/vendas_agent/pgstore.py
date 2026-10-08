@@ -4,8 +4,8 @@ One table serves many clients: every row carries a ``kb_id`` so each client's
 knowledge base is isolated and can be re-indexed independently.
 """
 
-from collections.abc import Sequence
 import re
+from collections.abc import Sequence
 
 import psycopg
 

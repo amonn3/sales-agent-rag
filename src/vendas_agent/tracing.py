@@ -1,7 +1,7 @@
 """Optional Langfuse tracing. A no-op unless langfuse is installed and configured."""
 
-from collections.abc import Callable
 import os
+from collections.abc import Callable
 from typing import Any, TypeVar, cast
 
 F = TypeVar("F", bound=Callable[..., Any])

@@ -6,9 +6,9 @@ Dataset format (JSON Lines), one case per line::
     {"question": "Vendem passagens aéreas?", "intent": "question", "grounded": false}
 """
 
+import json
 from collections.abc import Callable, Iterable
 from dataclasses import dataclass
-import json
 from pathlib import Path
 
 from vendas_agent.agent import SalesAgent

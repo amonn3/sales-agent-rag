@@ -26,7 +26,11 @@ def test_embeddings_are_deterministic_and_normalized() -> None:
 def test_similar_texts_score_higher_than_unrelated() -> None:
     embedder = HashingEmbedder()
     query, related, unrelated = embedder.embed(
-        ["quanto custa o plano pro", "o plano pro custa 129 reais", "backups diarios criptografados"]
+        [
+            "quanto custa o plano pro",
+            "o plano pro custa 129 reais",
+            "backups diarios criptografados",
+        ]
     )
     assert cosine(query, related) > cosine(query, unrelated)
 

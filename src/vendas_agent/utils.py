@@ -1,9 +1,9 @@
 """Small cross-cutting helpers (a typed decorator lives here)."""
 
-from collections.abc import Callable
 import functools
 import logging
 import time
+from collections.abc import Callable
 from typing import ParamSpec, TypeVar
 
 P = ParamSpec("P")

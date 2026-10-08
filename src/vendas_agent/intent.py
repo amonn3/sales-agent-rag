@@ -21,19 +21,56 @@ def _normalize(text: str) -> str:
 _RULES: tuple[tuple[Intent, tuple[str, ...]], ...] = (
     (
         Intent.HUMAN,
-        ("humano", "atendente", "vendedor", "especialista", "falar com alguem", "falar com uma pessoa", "falar com um"),
+        (
+            "humano",
+            "atendente",
+            "vendedor",
+            "especialista",
+            "falar com alguem",
+            "falar com uma pessoa",
+            "falar com um",
+        ),
     ),
     (
         Intent.BUYING,
-        ("quero contratar", "quero assinar", "quero comprar", "contratar", "assinar", "fechar", "como comeco", "quero comecar"),
+        (
+            "quero contratar",
+            "quero assinar",
+            "quero comprar",
+            "contratar",
+            "assinar",
+            "fechar",
+            "como comeco",
+            "quero comecar",
+        ),
     ),
     (
         Intent.OBJECTION,
-        ("caro", "concorrente", "ja uso", "nao preciso", "vou pensar", "pensar", "nao sei se", "dificil"),
+        (
+            "caro",
+            "concorrente",
+            "ja uso",
+            "nao preciso",
+            "vou pensar",
+            "pensar",
+            "nao sei se",
+            "dificil",
+        ),
     ),
     (
         Intent.PRICING,
-        ("preco", "precos", "quanto custa", "quanto e", "valor", "valores", "plano", "planos", "mensalidade", "desconto"),
+        (
+            "preco",
+            "precos",
+            "quanto custa",
+            "quanto e",
+            "valor",
+            "valores",
+            "plano",
+            "planos",
+            "mensalidade",
+            "desconto",
+        ),
     ),
 )
 _GREETINGS = ("oi", "ola", "bom dia", "boa tarde", "boa noite", "e ai", "hello", "hi")
@@ -78,4 +115,3 @@ class LLMIntentClassifier:
         if not found:
             return self._fallback.classify(message, history)
         return min(found, key=lambda pair: pair[0])[1]
-

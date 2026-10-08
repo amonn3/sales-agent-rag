@@ -98,7 +98,5 @@ def chunk_document(doc: Document, max_chars: int = 700, overlap: int = 80) -> li
     chunks: list[Chunk] = []
     for title, body in split_sections(doc.text):
         for piece in split_body(body, max_chars, overlap):
-            chunks.append(
-                Chunk(text=piece, source=doc.source, section=title, position=len(chunks))
-            )
+            chunks.append(Chunk(text=piece, source=doc.source, section=title, position=len(chunks)))
     return chunks

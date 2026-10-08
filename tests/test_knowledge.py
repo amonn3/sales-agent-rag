@@ -2,7 +2,12 @@ from pathlib import Path
 
 import pytest
 
-from vendas_agent.knowledge import KnowledgeBaseError, load_documents, load_knowledge_base, load_product
+from vendas_agent.knowledge import (
+    KnowledgeBaseError,
+    load_documents,
+    load_knowledge_base,
+    load_product,
+)
 from vendas_agent.models import KnowledgeBase
 
 VALID = """
@@ -52,7 +57,7 @@ def test_missing_files_and_empty_docs(tmp_path: Path) -> None:
     with pytest.raises(KnowledgeBaseError, match="not found"):
         load_product(tmp_path / "product.toml")
     (tmp_path / "docs").mkdir()
-    with pytest.raises(KnowledgeBaseError, match="no .md/.txt"):
+    with pytest.raises(KnowledgeBaseError, match=r"no \.md/\.txt"):
         load_documents(tmp_path / "docs")
     with pytest.raises(KnowledgeBaseError):
         load_knowledge_base(tmp_path)

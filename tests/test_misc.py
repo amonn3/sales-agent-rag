@@ -3,11 +3,11 @@ from pathlib import Path
 
 import pytest
 
+from tests.conftest import EXAMPLE_KB
 from vendas_agent.bootstrap import build_agent, kb_id_from_path
 from vendas_agent.config import Settings
 from vendas_agent.llm import AnthropicClient, ExtractiveDemoLLM
 from vendas_agent.utils import timed
-from tests.conftest import EXAMPLE_KB
 
 
 class _ListHandler(logging.Handler):
@@ -53,7 +53,12 @@ def test_timed_logs_even_when_function_raises() -> None:
 def test_settings_defaults_and_env_overrides() -> None:
     assert Settings.from_env({}).effective_min_similarity == 0.12
     s = Settings.from_env({"EMBEDDER": "openai", "TOP_K": "7", "STORE": "pgvector"})
-    assert (s.embedder, s.top_k, s.store, s.effective_min_similarity) == ("openai", 7, "pgvector", 0.30)
+    assert (s.embedder, s.top_k, s.store, s.effective_min_similarity) == (
+        "openai",
+        7,
+        "pgvector",
+        0.30,
+    )
     assert Settings.from_env({"MIN_SIMILARITY": "0.5"}).effective_min_similarity == 0.5
 
 
@@ -88,7 +93,7 @@ class _FakeAnthropic:
         self.kwargs = kwargs
 
         class _Response:
-            content = [_Block("text", " olá "), _Block("tool_use"), _Block("text", "mundo")]
+            content = (_Block("text", " olá "), _Block("tool_use"), _Block("text", "mundo"))
 
         return _Response()
 

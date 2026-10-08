@@ -1,12 +1,12 @@
 """Embedders. ``HashingEmbedder`` works offline (great for tests and demos);
 ``OpenAIEmbedder`` gives real semantic embeddings."""
 
-from collections.abc import Sequence
 import hashlib
 import math
 import re
 import unicodedata
-from typing import Any, Protocol
+from collections.abc import Sequence
+from typing import Any, ClassVar, Protocol
 
 
 class Embedder(Protocol):
@@ -18,7 +18,7 @@ class Embedder(Protocol):
 
 _TOKEN = re.compile(r"[a-z0-9]+")
 _STOPWORDS = frozenset(
-    "a o as os e em no na nos nas um uma uns umas de da do das dos para por com que "
+    "a o as os e em no na nos nas um uma uns umas de da do das dos para por com que "  # noqa: SIM905
     "se ao aos eu me meu minha voce voces vc tem ter ha eh sao ser como mais ou ja "
     "foi sua seu suas seus isso essa esse esta este".split()
 )
@@ -73,7 +73,10 @@ class HashingEmbedder:
 class OpenAIEmbedder:
     """Thin wrapper over the OpenAI embeddings API (``pip install .[openai]``)."""
 
-    _DIMENSIONS = {"text-embedding-3-small": 1536, "text-embedding-3-large": 3072}
+    _DIMENSIONS: ClassVar[dict[str, int]] = {
+        "text-embedding-3-small": 1536,
+        "text-embedding-3-large": 3072,
+    }
 
     def __init__(self, model: str = "text-embedding-3-small", client: Any | None = None) -> None:
         if model not in self._DIMENSIONS:

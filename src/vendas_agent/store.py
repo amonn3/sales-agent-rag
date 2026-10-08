@@ -1,7 +1,7 @@
 """Vector stores. Same Protocol for the in-memory store and for PgVector."""
 
-from collections.abc import Sequence
 import heapq
+from collections.abc import Sequence
 from typing import Protocol
 
 from vendas_agent.models import Chunk, Retrieved
