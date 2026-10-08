@@ -1,0 +1,32 @@
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: vendas
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d vendas"]
+      interval: 3s
+      retries: 10
+
+  agent:
+    build: .
+    profiles: ["app"]
+    stdin_open: true
+    tty: true
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      STORE: pgvector
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/vendas
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:

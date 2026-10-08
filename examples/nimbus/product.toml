@@ -1,0 +1,31 @@
+# Everything product-specific lives here + in docs/. Copy this folder to onboard a new client.
+
+[product]
+name = "Nimbus CRM"
+company = "Nimbus Software"
+language = "pt-BR"
+tone = "consultivo, simpático e direto, sem jargão"
+greeting = "Olá! Sou o assistente da Nimbus Software. Posso te ajudar a entender o Nimbus CRM e escolher o melhor plano. Qual é o seu cenário hoje?"
+
+[sales]
+call_to_action = "Para começar agora, crie sua conta de teste de 14 dias em nimbus.example/comecar — sem cartão de crédito."
+escalation_contact = "vendas@nimbus.example"
+extra_rules = [
+  "Nunca prometa funcionalidades que não estejam na documentação.",
+  "Não faça comparações diretas com nomes de concorrentes.",
+]
+
+[[plans]]
+name = "Starter"
+price_monthly = 49.0
+features = ["até 3 usuários", "pipeline de vendas", "importação por planilha"]
+
+[[plans]]
+name = "Pro"
+price_monthly = 129.0
+features = ["até 15 usuários", "automações de e-mail", "relatórios de funil", "integração com WhatsApp"]
+
+[[plans]]
+name = "Business"
+price_monthly = 299.0
+features = ["usuários ilimitados", "API REST", "SSO", "gerente de contas dedicado"]

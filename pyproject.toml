@@ -1,0 +1,53 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "vendas-agent"
+version = "0.1.0"
+description = "Sales agent that sells from a customizable, per-client knowledge base (RAG)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []  # the core is dependency-free on purpose; integrations are extras
+
+[project.optional-dependencies]
+anthropic = ["anthropic>=0.40"]
+openai = ["openai>=1.50"]
+graph = ["langgraph>=0.2"]
+pgvector = ["psycopg[binary]>=3.2"]
+tracing = ["langfuse>=3.0"]
+all = ["vendas-agent[anthropic,openai,graph,pgvector,tracing]"]
+dev = ["pytest>=8", "pytest-cov>=5", "ruff>=0.6", "mypy>=1.11"]
+
+[project.scripts]
+vendas-agent = "vendas_agent.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/vendas_agent"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "C4", "RUF"]
+ignore = ["E501"]  # line length is handled by `ruff format`
+
+[tool.mypy]
+strict = true
+python_version = "3.11"
+mypy_path = "src"
+files = ["src", "tests"]
+
+[[tool.mypy.overrides]]
+module = ["langgraph.*", "langfuse.*", "anthropic.*", "openai.*", "psycopg.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = [".", "src"]
+addopts = "--cov=vendas_agent --cov-report=term-missing"
+
+[tool.coverage.run]
+omit = ["src/vendas_agent/pgstore.py"]  # needs a real Postgres; see README

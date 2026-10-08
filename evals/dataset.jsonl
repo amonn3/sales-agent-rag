@@ -1,0 +1,10 @@
+{"question": "Oi, bom dia!", "intent": "greeting"}
+{"question": "Quanto custa o plano Pro?", "intent": "pricing", "source": "planos.md"}
+{"question": "Vocês integram com WhatsApp?", "intent": "question", "source": "integracoes.md"}
+{"question": "Os dados ficam seguros? Vocês seguem a LGPD?", "intent": "question", "source": "seguranca.md"}
+{"question": "Tem período de teste grátis?", "intent": "question", "source": "planos.md"}
+{"question": "Já uso outro CRM, é difícil migrar?", "intent": "objection", "source": "faq-objecoes.md"}
+{"question": "Vocês cobram fidelidade? Posso cancelar quando quiser?", "intent": "question", "source": "faq-objecoes.md"}
+{"question": "Quero contratar o plano Pro", "intent": "buying", "source": "planos.md"}
+{"question": "Quero falar com um atendente", "intent": "human", "escalated": true}
+{"question": "Vocês vendem passagens aéreas?", "intent": "question", "grounded": false}
